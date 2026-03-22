@@ -13,5 +13,14 @@
   "dependencies": {
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/100xdevs-bootcamp-1/14th-march-notes-app-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/100xdevs-bootcamp-1/14th-march-notes-app-auth/issues"
+  },
+  "homepage": "https://github.com/100xdevs-bootcamp-1/14th-march-notes-app-auth#readme",
+  "devDependencies": {}
 }

@@ -5,7 +5,7 @@ const { authMiddleware } = require("./middleware");
 const app = express();
 app.use(express.json());
 
-const notes = []; 
+const notes = [];
 const users = [{
     username: "harkirat",
     password: "123123"
@@ -13,7 +13,7 @@ const users = [{
 
 
 
-app.post("/signup", function(req, res) {
+app.post("/signup", function (req, res) {
     const username = req.body.username;  // harkirat
     const password = req.body.password;
     const userExists = users.find(user => user.username === username);
@@ -24,7 +24,7 @@ app.post("/signup", function(req, res) {
     }
 
     users.push({
-        username: username, 
+        username: username,
         password: password
     })
 
@@ -33,7 +33,7 @@ app.post("/signup", function(req, res) {
     })
 })
 
-app.post("/signin", function(req, res) {
+app.post("/signin", function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -45,7 +45,7 @@ app.post("/signin", function(req, res) {
         })
         return;
     }
-    
+
     // json web tokens
     const token = jwt.sign({
         username: username
@@ -58,11 +58,11 @@ app.post("/signin", function(req, res) {
 
 
 // POST - Create a note -- AUTHENTICATED ENDPOINT
-app.post("/notes", authMiddleware, function(req, res) {
+app.post("/notes", authMiddleware, function (req, res) {
 
     const username = req.username;
     const note = req.body.note;
-    notes.push({note, username});
+    notes.push({ note, username });
 
     res.json({
         message: "Done!"
@@ -70,7 +70,7 @@ app.post("/notes", authMiddleware, function(req, res) {
 })
 
 // GET - get all my notes -- AUTHENTICATED ENDPOINT
-app.get("/notes", authMiddleware, function(req, res) {
+app.get("/notes", authMiddleware, function (req, res) {
     const username = req.username;
     const userNotes = notes.filter(note => note.username === username);
 
@@ -79,16 +79,16 @@ app.get("/notes", authMiddleware, function(req, res) {
     })
 })
 
-app.get("/", function(req, res) {
-    res.sendFile("/Users/harkirat/Projects/bootcamp/week-9-notes-app/frontend/index.html")
+app.get("/", function (req, res) {
+    res.sendFile("/Users/mukundmadhav/Desktop/14th-march-notes-app-auth/frontend/index.html")
 })
 
-app.get("/signup", function(req, res) {
-    res.sendFile("/Users/harkirat/Projects/bootcamp/week-9-notes-app/frontend/signup.html")
+app.get("/signup", function (req, res) {
+    res.sendFile("/Users/mukundmadhav/Desktop/14th-march-notes-app-auth/frontend/signup.html")
 })
 
-app.get("/signin", function(req, res) {
-    res.sendFile("/Users/harkirat/Projects/bootcamp/week-9-notes-app/frontend/signin.html")
+app.get("/signin", function (req, res) {
+    res.sendFile("/Users/mukundmadhav/Desktop/14th-march-notes-app-auth/frontend/signin.html")
 })
 
 app.listen(3000);
